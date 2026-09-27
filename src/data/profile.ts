@@ -22,6 +22,7 @@ export const profile: Profile = {
   siteUrl: "https://your-portfolio.vercel.app", // TODO: your deployed URL
   githubUsername: "vaibhavbandgar3",
   focusAreas: ["Software Development", "Data Analytics", "Machine Learning", "Web Applications"],
+  building: ["full-stack web apps", "data pipelines", "ML models", "analytics dashboards", "clean APIs"],
   keywords: [
     "Vaibhav Bandgar",
     "software developer",
@@ -60,6 +61,12 @@ export const about: About = {
   paragraphs: [
     "I'm a recent graduate who likes working where software meets data. I enjoy the full path — understanding a problem, shaping the data, building the interface, and shipping something people can actually use.",
     "Right now I'm focused on strengthening my fundamentals in software engineering, analytics and machine learning, and I'm looking for a team where I can learn quickly and contribute from day one.",
+  ],
+  workflow: [
+    { label: "Collect", detail: "APIs, databases, files" },
+    { label: "Clean", detail: "Validate & transform" },
+    { label: "Model", detail: "Analyse, train, evaluate" },
+    { label: "Ship", detail: "Apps, dashboards, APIs" },
   ],
   interests: [
     "Full-stack web development",

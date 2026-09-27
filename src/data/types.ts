@@ -27,13 +27,17 @@ export interface Profile {
   siteUrl: string;
   /** GitHub username for the live repositories section. Leave empty to hide it. */
   githubUsername: string;
-  /** Rotating focus areas shown in the hero. */
+  /** Focus areas shown as chips in the hero. */
   focusAreas: string[];
+  /** Phrases cycled in the hero's terminal line: "$ building <phrase>". */
+  building: string[];
   keywords: string[];
 }
 
 export interface About {
   paragraphs: string[];
+  /** Stages of how you work end to end, shown as an animated pipeline. 3–5 short items. */
+  workflow: { label: string; detail: string }[];
   interests: string[];
   strengths: { title: string; description: string }[];
   /** Only real, verifiable highlights. */

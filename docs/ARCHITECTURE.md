@@ -71,8 +71,21 @@ the software + data + AI positioning rather than being generic decoration.
 - Loading: the canvas is `next/dynamic` with `ssr: false`, so it never
   blocks first paint; the CSS fallback shows until it mounts.
 
-Elsewhere, 3D is expressed with CSS perspective (tilt on project cards) so the
-page never runs more than one WebGL context.
+### Domain-themed effects in other sections
+
+| Where    | Effect                                                                                              | Tech                            |
+| -------- | --------------------------------------------------------------------------------------------------- | ------------------------------- |
+| Hero     | Terminal line `$ building <phrase>` that decodes through `profile.building`                         | `ScrambleText`                  |
+| Sections | Eyebrow labels "decrypt" from glyphs as they enter view                                             | `ScrambleText`                  |
+| About    | Data pipeline (Collect → Clean → Model → Ship) with packets flowing and stages lighting in sequence | CSS keyframes only              |
+| Skills   | Draggable 3D skill globe; the selected category glows                                               | CSS 3D + one rAF loop, no WebGL |
+| Projects | Perspective tilt, pointer light and a scan-line sweep over the cover on hover                       | Motion + CSS                    |
+| Contact  | "Loss landscape" point surface; an optimiser runs real gradient descent on it and leaves a trail    | R3F, lazy-mounted near viewport |
+
+At most two WebGL canvases exist (hero, contact); each is code-split, mounted
+only when near the viewport and paused (`frameloop="never"`) when off-screen,
+so only one ever renders at a time. The skill globe uses real DOM text, so it
+stays crisp and cheap. Every effect is static under `prefers-reduced-motion`.
 
 ## 5. Motion language
 

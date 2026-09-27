@@ -7,6 +7,7 @@ import { ease } from "@/lib/motion";
 import { cn } from "@/lib/utils";
 import { RevealGroup, RevealItem } from "@/components/ui/Reveal";
 import { Section } from "@/components/ui/Section";
+import { SkillGlobe } from "./SkillGlobe";
 
 /**
  * Grouped skills without proficiency bars. On large screens a category list
@@ -31,7 +32,7 @@ export function Skills() {
           role="tablist"
           aria-label="Skill categories"
           aria-orientation="vertical"
-          className="col-span-5 flex flex-col gap-1.5"
+          className="col-span-5 flex flex-col gap-1.5 self-start lg:sticky lg:top-28"
         >
           {skillGroups.map((group, i) => {
             const selected = group.id === active.id;
@@ -75,7 +76,18 @@ export function Skills() {
           })}
         </div>
 
-        <div className="col-span-7">
+        <div className="relative col-span-7 overflow-hidden rounded-[var(--radius-card)] border border-line bg-ink-900 p-8">
+          <div
+            aria-hidden="true"
+            className="absolute -top-24 -right-24 size-72 rounded-full bg-[radial-gradient(closest-side,rgb(34_211_238/0.12),transparent)]"
+          />
+          <SkillGlobe activeGroup={active.id} className="mx-auto -mt-4 max-w-[400px]" />
+          <p
+            aria-hidden="true"
+            className="-mt-2 mb-6 text-center font-mono text-[11px] tracking-widest text-fg-subtle uppercase"
+          >
+            Drag to rotate
+          </p>
           <AnimatePresence mode="wait">
             <motion.div
               key={active.id}
@@ -86,16 +98,14 @@ export function Skills() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -8 }}
               transition={{ duration: 0.35, ease }}
-              className="relative h-full overflow-hidden rounded-[var(--radius-card)] border border-line bg-ink-900 p-8"
+              className="relative border-t border-line pt-6"
             >
-              <div
-                aria-hidden="true"
-                className="absolute -top-24 -right-24 size-72 rounded-full bg-[radial-gradient(closest-side,rgb(34_211_238/0.12),transparent)]"
-              />
-              <active.icon className="relative size-8 text-accent-2" aria-hidden="true" />
-              <h3 className="relative mt-5 text-2xl font-semibold tracking-tight">{active.title}</h3>
-              <p className="relative mt-2 text-fg-muted">{active.description}</p>
-              <ul className="relative mt-8 flex flex-wrap gap-2.5">
+              <div className="flex items-center gap-3">
+                <active.icon className="size-6 text-accent-2" aria-hidden="true" />
+                <h3 className="text-xl font-semibold tracking-tight">{active.title}</h3>
+              </div>
+              <p className="mt-1.5 text-fg-muted">{active.description}</p>
+              <ul className="mt-5 flex flex-wrap gap-2.5">
                 {active.skills.map((skill, i) => (
                   <motion.li
                     key={skill}
@@ -113,7 +123,8 @@ export function Skills() {
         </div>
       </div>
 
-      {/* Small screens: all groups as cards */}
+      {/* Small screens: globe, then all groups as cards */}
+      <SkillGlobe className="mx-auto mb-8 max-w-[340px] lg:hidden" />
       <RevealGroup className="grid gap-4 sm:grid-cols-2 lg:hidden">
         {skillGroups.map((group) => (
           <RevealItem key={group.id} className="rounded-[var(--radius-card)] border border-line bg-ink-900 p-5">

@@ -134,3 +134,99 @@
     pointer-events: none;
   }
 }
+
+/* ─────────────────────────────  Pipeline animation  ───────────────────────────── */
+@keyframes stage-glow {
+  0%,
+  30%,
+  100% {
+    border-color: var(--color-line);
+    box-shadow: none;
+  }
+  8%,
+  20% {
+    border-color: rgb(34 211 238 / 0.55);
+    box-shadow:
+      0 0 0 1px rgb(34 211 238 / 0.15),
+      0 12px 40px -12px rgb(34 211 238 / 0.45);
+  }
+}
+@keyframes packet-y {
+  from {
+    top: 0;
+    opacity: 0;
+  }
+  15%,
+  85% {
+    opacity: 1;
+  }
+  to {
+    top: 100%;
+    opacity: 0;
+  }
+}
+@keyframes packet-x {
+  from {
+    left: 0;
+    opacity: 0;
+  }
+  15%,
+  85% {
+    opacity: 1;
+  }
+  to {
+    left: 100%;
+    opacity: 0;
+  }
+}
+.pipeline-stage {
+  animation: stage-glow var(--cycle, 3.6s) ease-in-out infinite;
+}
+.pipeline-packet {
+  position: absolute;
+  left: 50%;
+  width: 6px;
+  height: 6px;
+  margin: -3px;
+  border-radius: 999px;
+  background: var(--color-accent-2);
+  box-shadow: 0 0 10px 2px rgb(34 211 238 / 0.6);
+  animation: packet-y 0.9s linear infinite;
+}
+@media (min-width: 64rem) {
+  .pipeline-packet {
+    top: 50%;
+    left: 0;
+    animation-name: packet-x;
+  }
+}
+
+/* ─────────────────────────────  Project cover scan  ───────────────────────────── */
+@keyframes scan {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(400%);
+  }
+}
+.scanline {
+  position: absolute;
+  inset-inline: 0;
+  top: 0;
+  height: 25%;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgb(34 211 238 / 0.14) 85%,
+    rgb(34 211 238 / 0.55) 99%,
+    transparent
+  );
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s;
+}
+.group:hover .scanline {
+  opacity: 1;
+  animation: scan 1.8s linear infinite;
+}

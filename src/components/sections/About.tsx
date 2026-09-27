@@ -2,6 +2,7 @@ import { Sparkles } from "lucide-react";
 import { about, education, sectionIndex } from "@/data";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
 import { Section } from "@/components/ui/Section";
+import { Pipeline } from "./Pipeline";
 
 export function About() {
   const latest = education[0];
@@ -74,6 +75,7 @@ export function About() {
           </RevealGroup>
         </div>
       </div>
+      <Pipeline />
     </Section>
   );
 }

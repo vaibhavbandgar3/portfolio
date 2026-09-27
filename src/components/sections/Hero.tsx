@@ -7,6 +7,7 @@ import { profile, socials } from "@/data";
 import { ease } from "@/lib/motion";
 import { ButtonLink } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Section";
+import { RotatingScramble } from "@/components/ui/ScrambleText";
 import { SocialIcon } from "@/components/ui/SocialIcon";
 import { HeroVisual } from "@/components/three/HeroVisual";
 
@@ -85,7 +86,14 @@ export function Hero() {
             {profile.intro}
           </motion.p>
 
-          <motion.ul {...fadeIn(0.85)} aria-label="Focus areas" className="mt-6 flex flex-wrap gap-2">
+          <motion.p {...fadeIn(0.8)} className="mt-6 font-mono text-sm text-fg-muted sm:text-base">
+            <span className="text-accent-2">~/{profile.shortName.toLowerCase()}</span>
+            <span className="text-fg-subtle"> $ </span>
+            <span className="text-fg-subtle">building </span>
+            <RotatingScramble phrases={profile.building} />
+          </motion.p>
+
+          <motion.ul {...fadeIn(0.85)} aria-label="Focus areas" className="mt-5 flex flex-wrap gap-2">
             {profile.focusAreas.map((area) => (
               <li
                 key={area}

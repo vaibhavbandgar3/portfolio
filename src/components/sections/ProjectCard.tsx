@@ -108,6 +108,7 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
           ) : (
             <GeneratedCover project={project} index={index} />
           )}
+          <div aria-hidden="true" className="scanline" />
           <div className="absolute inset-0 bg-gradient-to-t from-ink-850 via-transparent to-transparent" />
           <div className="absolute top-4 left-4 flex gap-2">
             <Tag className="bg-ink-950/60 backdrop-blur-md">{project.type}</Tag>

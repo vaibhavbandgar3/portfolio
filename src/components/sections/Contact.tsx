@@ -8,6 +8,7 @@ import { Magnetic } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
 import { Section } from "@/components/ui/Section";
 import { SocialIcon } from "@/components/ui/SocialIcon";
+import { DataSurface } from "@/components/three/DataSurface";
 
 /**
  * Optional form backend. Set NEXT_PUBLIC_CONTACT_ENDPOINT to any endpoint that
@@ -82,6 +83,8 @@ export function Contact() {
     <Section
       id="contact"
       index={sectionIndex("contact")}
+      className="overflow-hidden"
+      backdrop={<DataSurface />}
       eyebrow="Contact"
       title={
         <>
